@@ -1,0 +1,72 @@
+<!doctype html>
+
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+	Remove this if you use the .htaccess -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Blog</title>
+	<meta name="description" content="My Blog">
+	<meta name="author" content="Dimitar Haralanov">
+
+	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+	<%= stylesheet_link_tag 'style' %>
+	<%= stylesheet_link_tag 'formalize' %>
+
+  <%= javascript_include_tag 'modernizr', 'jquery.min.js', 'rails', 'application' %>
+	<%= javascript_include_tag 'formalize' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+	<header>
+		<div class="content-wrapper">
+			<hgroup>
+				<a href="/"><h1>MyBlog</h1></a>
+				<h2>This Is My First Experimental Blog Platform Written In Rails</h2>
+			</hgroup>
+			<nav role="actions">
+				<%- if user_signed_in? -%>
+					<p>Hello, <strong><%= current_user.name %></strong></p>
+					<ul>
+						<li><%= link_to 'New Article', new_article_path %></li>
+						<li><%= link_to 'Logout', destroy_user_session_path %></li>
+					</ul>
+				<%- else -%>
+					<p><%= link_to 'Login', new_user_session_path %></p>
+				<%- end -%>
+			</nav>
+		</div><!-- end of .content-wrapper -->
+	</header>
+
+	<section id="main">
+		<div class="content-wrapper">
+			<%= content_tag :p, notice, :class => 'notice' if notice.present? %>
+			<%= content_tag :p, alert, :class => 'alert' if alert.present? %>
+
+			
+			<%= yield %>
+		</div>
+	</section>
+	
+	<footer>
+		<div class="content-wrapper">
+			<p>&copy; 2010 Dimitar Haralanov</p>
+		</div>
+	</footer>
+
+</body>
+</html>

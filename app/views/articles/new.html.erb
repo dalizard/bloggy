@@ -1,0 +1,7 @@
+<h1>New article</h1>
+
+<p><%= current_user.articles.to_a %></p>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', articles_path %>

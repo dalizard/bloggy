@@ -1,0 +1,15 @@
+<%= div_for article do %>
+	<header>
+	  <h1><%= link_to article.title, article %></h1>
+		<% if article.owned_by?(current_user) %>		
+			<ul>
+				<li><%= link_to "Edit", edit_article_path(article) %></li>
+				<li><%= link_to "Delete", article, :confirm => "Are you sure?", :method => :delete %></li>
+			</ul>
+		<% end %>
+	</header>
+	<div><%= article.body %></div>
+	<footer>
+		<p>Comments: <%= link_to article.comments.count, article_path(article, :anchor => "comments") %></p>
+	</footer>
+<% end %>

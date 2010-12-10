@@ -1,0 +1,14 @@
+<%= render @article %>
+
+<section id="comments">
+	<% if @article.comments.empty? %>
+		<h1>You have no comments so far.</h1>
+	<% else %>
+		<h1>Comments</h1>
+		<%= render @article.comments %>
+	<% end %>
+	<footer>
+		<h1>Add A New Comment</h1>
+		<%= render :file => 'comments/new' %>
+	</footer>
+</section>
